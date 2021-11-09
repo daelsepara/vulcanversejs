@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vulcan Verse Adventure Sheet</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-datepicker.standalone.min.css" />
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap3-typeahead.min.js"></script>
+    <script src="js/vue.global.prod.js"></script>
+    <style>
+        @font-face {
+            font-family: "Marcellus Reg";
+            src: url("fonts/Marcellus-Regular.eot");
+            src: url("fonts/Marcellus-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/Marcellus-Regular.woff") format("woff"), url("../fonts/Marcellus-Regular.ttf") format("truetype"), url("fonts/Marcellus-Regular.svg#Marcellus Reg") format("svg");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .adventure-sheet-details {
+            background-image: url('images/soldier.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: bottom right;
+            font-family: Marcellus Reg !important;
+        }
+
+        .border-vulcan {
+            border: 2px solid #f55d0e;
+            border-radius: 0.25rem;
+        }
+
+        .btn {
+            background-color: #f55d0e;
+            border: none;
+            font-family: Marcellus Reg;
+        }
+
+        .form-label {
+            font-family: Marcellus Reg !important;
+        }
+
+        input {
+            font-family: Marcellus Reg !important;
+            background-color: rgba(0, 0, 0, 0) !important;
+            border: 2px solid #f55d0e !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="vulcanverse-vue">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <img src="images/vulcanverse-logo.png" alt="" width="38" height="64" class="d-inline-block align-text-top">
+            <h1 style="font-family: Marcellus Reg; font-size: 32px; color: #f55d0e;">{{message}}</h1>
+        </nav>
+        <div class="container-fluid">
+            <br />
+            <div class="adventure-sheet">
+                <div class="container-fluid border-vulcan rounded">
+                    <div class="adventure-sheet-details">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="adventurerName" class="form-label text-dark"
+                                    style="font-weight: bold;">NAME</label>
+                                <input v-model="data.name" type="text" class="form-control" id="adventurerName"
+                                    placeholder="Adventurer's name" value="{{data.name}}">
+                            </div>
+                            <div class="col-6">
+                                <label for="god" class="form-label text-dark" style="font-weight: bold;">GOD</label>
+                                <input v-model="data.god" type="text" class="form-control" id="God" placeholder=""
+                                    value="{{data.god}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="companion" class="form-label text-dark"
+                                    style="font-weight: bold;">COMPANION</label>
+                                <input v-model="data.companion" type="text" class="form-control" id="companion"
+                                    placeholder="Companion (maximum of 1)" value="{{data.companion}}">
+                            </div>
+                            <div class="col-3">
+                                <label for="glory" class="form-label text-dark" style="font-weight: bold;">GLORY</label>
+                                <input v-model="data.glory" type="number" class="form-control" id="glory" placeholder=""
+                                    value="{{data.glory}}">
+                            </div>
+                            <div class="col-3">
+                                <label for="scars" class="form-label text-dark" style="font-weight: bold;">SCARS</label>
+                                <input v-model="data.scars" type="number" class="form-control" id="scars" placeholder=""
+                                    value="{{data.scars}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                            </div>
+                            <div class="col-3">
+                            </div>
+                            <div class="col-3">
+                                <label for="money" class="form-label text-dark" style="font-weight: bold;">MONEY</label>
+                                <input v-model="data.money" type="number" class="form-control" id="money" placeholder=""
+                                    value="{{data.money}}">
+                            </div>
+                            <div class="col-3">
+                                <label for="location" class="form-label text-dark" style="font-weight: bold;">CURRENT
+                                    LOCATION</label>
+                                <input v-model="data.location" type="number" class="form-control" id="location"
+                                    placeholder="" value="{{data.location}}">
+                            </div>
+                        </div>
+                        <hr style="border-color:#f55d0e; border-width: 2px;" />
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="form-label text-dark" style="font-weight: bold;">ATTRIBUTES</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="form-label text-dark" style="font-weight: bold;">SCORE</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="form-label text-dark">CHARM</p>
+                            </div>
+                            <div class="col-3">
+                                <input v-model="data.attributes.charm" type="number" class="form-control" id="charm"
+                                    placeholder="" value="{{data.attributes.charm}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="form-label text-dark">GRACE</p>
+                            </div>
+                            <div class="col-3">
+                                <input v-model="data.attributes.grace" type="number" class="form-control" id="grace"
+                                    placeholder="" value="{{data.attributes.grace}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="form-label text-dark">INGENUITY</p>
+                            </div>
+                            <div class="col-3">
+                                <input v-model="data.attributes.ingenuity" type="number" class="form-control"
+                                    id="ingenuity" placeholder="" value="{{data.attributes.ingenuity}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="form-label text-dark">STRENGTH</p>
+                            </div>
+                            <div class="col-3">
+                                <input v-model="data.attributes.strength" type="number" class="form-control"
+                                    id="ingenuity" placeholder="" value="{{data.attributes.strength}}">
+                            </div>
+                        </div>
+                        <hr style="border-color:#f55d0e; border-width: 2px;" />
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-lg mr-2 mb-2 text-white">Map</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white">Blessings</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white">Possessions</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white">Codewords</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white">Load</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+    <script src="js/vulcanverse-vue.js"></script>
+</body>
+
+</html>
