@@ -49,6 +49,7 @@
             border: 2px solid #f55d0e !important;
         }
     </style>
+    <link rel="shortcut icon" type="image/jpg" href="images/vulcanverse-logo.png"/>
 </head>
 
 <body>
@@ -85,32 +86,32 @@
                             <div class="col-3">
                                 <label for="glory" class="form-label text-dark" style="font-weight: bold;">GLORY</label>
                                 <input v-model="data.glory" type="number" class="form-control" id="glory" placeholder=""
-                                    value="{{data.glory}}">
+                                    value="{{data.glory}}" min=0>
                             </div>
                             <div class="col-3">
                                 <label for="scars" class="form-label text-dark" style="font-weight: bold;">SCARS</label>
                                 <input v-model="data.scars" type="number" class="form-control" id="scars" placeholder=""
-                                    value="{{data.scars}}">
+                                    value="{{data.scars}}" min=0>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
                                 <label for="book" class="form-label text-dark" style="font-weight: bold;">BOOK</label>
                                 <input v-model="data.book" type="number" class="form-control" id="book" placeholder=""
-                                    value="{{data.book}}">
+                                    value="{{data.book}}" min=1 max=5>
                             </div>
                             <div class="col-3">
                             </div>
                             <div class="col-3">
                                 <label for="money" class="form-label text-dark" style="font-weight: bold;">MONEY</label>
                                 <input v-model="data.money" type="number" class="form-control" id="money" placeholder=""
-                                    value="{{data.money}}">
+                                    value="{{data.money}}" min=0>
                             </div>
                             <div class="col-3">
                                 <label for="location" class="form-label text-dark" style="font-weight: bold;">CURRENT
                                     LOCATION</label>
                                 <input v-model="data.location" type="number" class="form-control" id="location"
-                                    placeholder="" value="{{data.location}}">
+                                    placeholder="" value="{{data.location}}" min=1>
                             </div>
                         </div>
                         <hr style="border-color:#f55d0e; border-width: 2px;" />
@@ -128,7 +129,7 @@
                             </div>
                             <div class="col-3">
                                 <input v-model="data.attributes.charm" type="number" class="form-control" id="charm"
-                                    placeholder="" value="{{data.attributes.charm}}">
+                                    placeholder="" value="{{data.attributes.charm}}" min=-2 max=5>
                             </div>
                         </div>
                         <div class="row">
@@ -137,7 +138,7 @@
                             </div>
                             <div class="col-3">
                                 <input v-model="data.attributes.grace" type="number" class="form-control" id="grace"
-                                    placeholder="" value="{{data.attributes.grace}}">
+                                    placeholder="" value="{{data.attributes.grace}}" min=-2 max=5>
                             </div>
                         </div>
                         <div class="row">
@@ -146,7 +147,7 @@
                             </div>
                             <div class="col-3">
                                 <input v-model="data.attributes.ingenuity" type="number" class="form-control"
-                                    id="ingenuity" placeholder="" value="{{data.attributes.ingenuity}}">
+                                    id="ingenuity" placeholder="" value="{{data.attributes.ingenuity}}" min=-2 max=5>
                             </div>
                         </div>
                         <div class="row">
@@ -155,13 +156,14 @@
                             </div>
                             <div class="col-3">
                                 <input v-model="data.attributes.strength" type="number" class="form-control"
-                                    id="ingenuity" placeholder="" value="{{data.attributes.strength}}">
+                                    id="ingenuity" placeholder="" value="{{data.attributes.strength}}" min=-2 max=5>
                             </div>
                         </div>
                         <hr style="border-color:#f55d0e; border-width: 2px;" />
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-lg mr-2 mb-2 text-white">Map</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white map-button" data-bs-toggle="modal"
+                                    data-bs-target="#mapModal">Map</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Blessings</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Possessions</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Codewords</button>
@@ -176,8 +178,37 @@
                 <br />
             </div>
         </div>
+        <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="mapTitle" style="font-family: Marcellus Reg;"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img id="mapImage" src="" style="display: block;" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="js/vulcanverse-vue.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.map-button').click(function () {
+                var data = VulcanVerseVueApp.methods.selectMap();
+                $('#mapTitle').html(data.mapName);
+                $('#mapImage').attr('src', data.map);
+                $('#mapModal').modal('show');
+            });
+        });
+    </script>
 </body>
 
 </html>
