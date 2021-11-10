@@ -72,6 +72,15 @@ const VulcanVerseVueApp = {
             }
 
             return codes;
+        },
+
+        saveFile: function (adventurer) {
+            const data = JSON.stringify(adventurer)
+            const blob = new Blob([data], { type: 'application/json' })
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = 'adventurer.json';
+            a.click();
         }
     }
 }
