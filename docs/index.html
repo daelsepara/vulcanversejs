@@ -78,19 +78,19 @@
                             </div>
                             <div class="col-6">
                                 <h1 style="font-family: Marcellus Reg; font-size: 32px; color: #f55d0e;"
-                                    v-model="bookTitle()">{{bookTitle()}}</h1>
+                                    v-model.trim="bookTitle()">{{bookTitle()}}</h1>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <label for="adventurerName" class="form-label text-dark"
                                     style="font-weight: bold;">NAME</label>
-                                <input v-model="data.name" type="text" class="form-control" id="adventurerName"
+                                <input v-model.trim="data.name" type="text" class="form-control" id="adventurerName"
                                     placeholder="Adventurer's name" value="{{data.name}}">
                             </div>
                             <div class="col-6"> <label for="god" class="form-label text-dark"
                                     style="font-weight: bold;">GOD</label>
-                                <select v-model="data.god" class="form-select form-select-lg border-vulcan"
+                                <select v-model.trim="data.god" class="form-select form-select-lg border-vulcan"
                                     aria-label="form-select-lg" id="god"
                                     style="display: block; height: 55%; width: 100%">
                                     <option v-for="god in gods">{{god}}</option>
@@ -101,7 +101,7 @@
                             <div class="col-6">
                                 <label for="companion" class="form-label text-dark"
                                     style="font-weight: bold;">COMPANION</label>
-                                <input v-model="data.companion" type="text" class="form-control" id="companion"
+                                <input v-model.trim="data.companion" type="text" class="form-control" id="companion"
                                     placeholder="Companion (maximum of 1)" value="{{data.companion}}">
                             </div>
                             <div class="col-3">
@@ -189,7 +189,7 @@
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white map-button" data-bs-toggle="modal"
                                     data-bs-target="#mapModal">Map</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white">Blessings</button>
-                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white">Possessions</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white items-button">Possessions</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white codewords-button"
                                     data-bs-toggle="modal" data-bs-target="#codewordsModal">Codewords</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white">Ticks</button>
@@ -220,12 +220,13 @@
                         <img id="mapImage" src="" style="display: block;" />
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white"
+                            data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="codewordsModal" tabindex="-1" role="dialog" aria-labelledby="mapTitle"
+        <div class="modal fade" id="codewordsModal" tabindex="-1" role="dialog" aria-labelledby="codewordsTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
@@ -255,7 +256,109 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="itemsModal" tabindex="-1" role="dialog" aria-labelledby="itemsTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 style="font-family: Marcellus Reg;"><span class="modal-title" id="itemsTitle"
+                                style="color: #f55d0e; font-weight: bold; font-size: x-large;">
+                                Possessions</span>
+                            <span style="font-size: large;"> (maximum of
+                                20)</span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <template v-for="(item, itemindex) in data.possessions">
+                                <div class="col-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="itemBox"
+                                            v-on:click='removeItem(itemindex, $event)' for="itemBox"
+                                            style="height: 18px !important;" :checked='hasItem(itemindex)'>
+                                        <label class="form-check-label" for="itemBox"
+                                            style="font-family: Marcellus Reg; font-size: 18px;"><b>{{item.name}}</b>
+                                            {{itemAttributes(item)}}</label>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white add-item-button">Add</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 style="font-family: Marcellus Reg;"><span class="modal-title" id="addItemTitle"
+                                style="color: #f55d0e; font-weight: bold; font-size: x-large;">
+                                Add Item</span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <label for="itemName" class="form-label text-dark"
+                                    style="font-weight: bold;">NAME</label>
+                                <input type="text" class="form-control" id="itemName"
+                                    placeholder="Please enter name of the item">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <span class="form-label text-dark float-right">CHARM</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="number" class="form-control" id="itemCharm" min=-5 max=5 value=0>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <span class="form-label text-dark float-right">GRACE</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="number" class="form-control" id="itemGrace" min=-5 max=5 value=0>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <span class="form-label text-dark float-right">INGENUITY</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="number" class="form-control" id="itemIngenuity" min=-5 max=5 value=0>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <span class="form-label text-dark float-right">STRENGTH</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="number" class="form-control" id="itemStrength" min=-5 max=5 value=0>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white save-item-button">Add
+                            Item</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white"
+                            data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -264,11 +367,68 @@
     <script src="js/vulcanverse-vue.js"></script>
     <script>
         $(document).ready(function () {
+
             $('.map-button').click(function () {
                 var data = app.selectMap();
                 $('#mapTitle').html(data.mapName);
                 $('#mapImage').attr('src', data.map);
                 $('#mapModal').modal('show');
+            });
+
+            $('.items-button').click(function () {
+                $('#itemsModal').modal('show');
+                $('#addItemModal').modal('hide');
+            });
+
+            $('.add-item-button').click(function () {
+
+                document.getElementById('itemCharm').value = 0;
+                document.getElementById('itemGrace').value = 0;
+                document.getElementById('itemIngenuity').value = 0;
+                document.getElementById('itemStrength').value = 0;
+                document.getElementById('itemName').value = '';
+
+                $('#itemsModal').modal('hide');
+                $('#addItemModal').modal('show');
+            });
+
+            $('.save-item-button').click(function () {
+
+                let charm = parseInt(document.getElementById('itemCharm'));
+                let grace = parseInt(document.getElementById('itemGrace'));
+                let ingenuity = parseInt(document.getElementById('itemIngenuity'));
+                let strength = parseInt(document.getElementById('itemStrength').value);
+                let name = document.getElementById('itemName').value.trim();
+
+                if (name !== undefined && name.length > 0) {
+
+                    item = { name: name };
+
+                    if (charm !== undefined && !isNaN(charm) && charm != 0) {
+
+                        item.charm = charm;
+                    }
+
+                    if (grace !== undefined && !isNaN(grace) && grace != 0) {
+
+                        item.grace = grace;
+                    }
+
+                    if (ingenuity !== undefined && !isNaN(ingenuity) && ingenuity != 0) {
+
+                        item.ingenuity = ingenuity;
+                    }
+
+                    if (strength !== undefined && !isNaN(strength) && strength != 0) {
+
+                        item.strength = strength;
+                    }
+
+                    app.addItem(item);
+                }
+
+                $('#addItemModal').modal('hide');
+                $('#itemsModal').modal('show');
             });
 
             $('.codewords-button').click(function () {

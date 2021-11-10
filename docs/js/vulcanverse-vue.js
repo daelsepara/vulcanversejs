@@ -88,6 +88,99 @@ const VulcanVerseVueApp = {
             }
         },
 
+        itemAttributes: function (item) {
+
+            var attr = '';
+
+            if (item.charm !== undefined) {
+
+                if (item.charm < 0) {
+
+                    attr += '-';
+                }
+                else if (item.charm > 0) {
+
+                    attr += '+';
+                }
+
+                attr += item.charm + ' CHARM';
+            }
+
+            if (item.grace !== undefined) {
+
+                if (item.grace < 0) {
+
+                    attr += '-';
+                }
+                else {
+
+                    attr += '+';
+                }
+
+                attr += item.grace + ' GRACE';
+            }
+
+            if (item.ingenuity !== undefined) {
+
+                if (item.ingenuity < 0) {
+
+                    attr += '-';
+                }
+                else {
+
+                    attr += '+';
+                }
+
+                attr += item.ingenuity + ' INGENUITY';
+            }
+
+            if (item.strength !== undefined) {
+
+                if (item.strength < 0) {
+
+                    attr += '-';
+                }
+                else {
+                    attr += '+';
+                }
+
+                attr += item.strength + ' STRENGTH';
+            }
+
+            if (attr.length > 0) {
+
+                attr = '(' + attr + ')';
+            }
+
+            return attr;
+        },
+
+        hasItem: function (i) {
+
+            return this.data !== undefined && this.data.possessions[i] !== undefined;
+        },
+
+        addItem: function (item) {
+
+            if (this.data !== undefined && item !== undefined) {
+
+                this.data.possessions.push(item);
+            }
+        },
+
+        removeItem: function (i, e) {
+
+            if (this.data !== undefined) {
+
+                if (!e.target.checked) {
+
+                    this.data.possessions.splice(i, 1);
+
+                    e.target.checked = true;
+                }
+            }
+        },
+
         saveFile: function () {
 
             const json = JSON.stringify(this.data)
