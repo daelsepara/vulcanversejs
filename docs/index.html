@@ -88,10 +88,13 @@
                                 <input v-model="data.name" type="text" class="form-control" id="adventurerName"
                                     placeholder="Adventurer's name" value="{{data.name}}">
                             </div>
-                            <div class="col-6">
-                                <label for="god" class="form-label text-dark" style="font-weight: bold;">GOD</label>
-                                <input v-model="data.god" type="text" class="form-control" id="God"
-                                    value="{{data.god}}">
+                            <div class="col-6"> <label for="god" class="form-label text-dark"
+                                    style="font-weight: bold;">GOD</label>
+                                <select v-model="data.god" class="form-select form-select-lg border-vulcan"
+                                    aria-label="form-select-lg" id="god"
+                                    style="display: block; height: 55%; width: 100%">
+                                    <option v-for="god in gods">{{god}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -241,8 +244,8 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="codewordBox"
                                                 :checked='hasCodeword(bookindex, codeindex)'
-                                                v-on:click='toggleCodeword(bookindex, codeindex)'
-                                                for="codewordBox" style="height: 18px !important;">
+                                                v-on:click='toggleCodeword(bookindex, codeindex)' for="codewordBox"
+                                                style="height: 18px !important;">
                                             <label class="form-check-label" for="codewordBox"
                                                 style="font-family: Marcellus Reg; font-size: 18px;">{{codeword}}</label>
                                         </div>
