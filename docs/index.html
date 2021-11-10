@@ -71,10 +71,14 @@
                 <div class="container-fluid border-vulcan rounded">
                     <div class="adventure-sheet-details">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-6">
                                 <label for="book" class="form-label text-dark" style="font-weight: bold;">BOOK</label>
                                 <input v-model="data.book" type="number" class="form-control" id="book" placeholder=""
                                     value="{{data.book}}" min=1 max=5>
+                            </div>
+                            <div class="col-6">
+                                <h1 style="font-family: Marcellus Reg; font-size: 32px; color: #f55d0e;"
+                                    v-model="bookTitle()">{{bookTitle()}}</h1>
                             </div>
                         </div>
                         <div class="row">

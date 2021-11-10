@@ -19,6 +19,25 @@ const VulcanVerseVueApp = {
         }
     },
     methods: {
+        bookTitle: function () {
+
+            var title = 'VulcanVerse Gamebook';
+
+            if (adventurer.book == 1) {
+                title = 'The Houses of the Dead';
+            } else if (adventurer.book == 2) {
+                title = 'The Hammer of the Sun';
+            } else if (adventurer.book == 3) {
+                title = 'The Wild Woods';
+            } else if (adventurer.book == 4) {
+                title = 'The Pillars of the Sky';
+            } else if (adventurer.book == 5) {
+                title = 'Workshop of the Gods';
+            }
+
+            return title;
+        },
+
         selectMap: function () {
 
             var data = { map: '', mapName: '' };
@@ -29,6 +48,9 @@ const VulcanVerseVueApp = {
             } else if (adventurer.book == 2) {
                 data.map = 'images/desert-of-notus-map.jpg';
                 data.mapName = 'The Desert of Notus';
+            } else if (adventurer.book == 5) {
+                data.map = 'images/vulcan-city-map.jpg';
+                data.mapName = 'Vulcan City';
             } else {
                 data.mapName = 'Terra Incognito';
             }
