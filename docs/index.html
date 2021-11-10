@@ -33,15 +33,15 @@
             border-radius: 0.25rem;
         }
 
-        .btn {
+        .btn-vulcan {
             background-color: #f55d0e;
             border: none;
             font-family: Marcellus Reg;
         }
 
-        .btn:hover,
-        .btn:focus,
-        .btn:active {
+        .btn-vulcan:hover,
+        .btn-vulcan:focus,
+        .btn-vulcan:active {
             background-color: #ad3d01;
         }
 
@@ -183,15 +183,17 @@
                         <hr style="border-color:#f55d0e; border-width: 2px;" />
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-lg mr-2 mb-2 text-white map-button" data-bs-toggle="modal"
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white map-button" data-bs-toggle="modal"
                                     data-bs-target="#mapModal">Map</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white">Blessings</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white">Possessions</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white codewords-button" data-bs-toggle="modal"
-                                    data-bs-target="#codewordsModal">Codewords</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white">Ticks</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white">Load</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white" v-on:click="saveFile(data)">Save</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white">Blessings</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white">Possessions</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white codewords-button"
+                                    data-bs-toggle="modal" data-bs-target="#codewordsModal">Codewords</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white">Ticks</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white"
+                                    v-on:click="saveFile()">Save</button>
+                                <label for="loadFile" class="btn-vulcan btn-lg mr-2 mb-2 text-white">Load</label>
+                                <input id="loadFile" type="file" @change="loadFile" style="display:none;">
                             </div>
                         </div>
                     </div>
@@ -238,8 +240,8 @@
                                     <div class="col-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="codewordBox"
-                                                :checked='hasCodeword(data.codewords, bookindex, codeindex)'
-                                                v-on:click='data.codewords = toggleCodeword(data.codewords, bookindex, codeindex)'
+                                                :checked='hasCodeword(bookindex, codeindex)'
+                                                v-on:click='toggleCodeword(bookindex, codeindex)'
                                                 for="codewordBox" style="height: 18px !important;">
                                             <label class="form-check-label" for="codewordBox"
                                                 style="font-family: Marcellus Reg; font-size: 18px;">{{codeword}}</label>
