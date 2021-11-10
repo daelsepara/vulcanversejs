@@ -45,6 +45,10 @@
             background-color: #ad3d01;
         }
 
+        .btn-vulcan:disabled {
+            background-color: #888684;
+        }
+
         .form-label {
             font-family: Marcellus Reg !important;
             vertical-align: bottom;
@@ -293,7 +297,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-vulcan btn-lg rounded text-white add-item-button">Add</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white add-item-button"
+                            :disabled="data.possessions.length >= 20">Add</button>
                         <button type="button" class="btn-vulcan btn-lg rounded text-white"
                             data-dismiss="modal">Close</button>
                     </div>
