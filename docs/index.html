@@ -39,12 +39,15 @@
             font-family: Marcellus Reg;
         }
 
-        .btn:hover, .btn:focus, .btn:active {
+        .btn:hover,
+        .btn:focus,
+        .btn:active {
             background-color: #ad3d01;
         }
 
         .form-label {
             font-family: Marcellus Reg !important;
+            vertical-align: bottom;
         }
 
         input {
@@ -108,7 +111,7 @@
                         <div class="row">
                             <div class="col-3">
                                 <span style="font-weight: bold;">WOUND</span>
-                                <div class="form-check form-switch">
+                                <div class="form-check">
                                     <input class="form-check-input" type="checkbox" role="switch" value="" id="wounded"
                                         v-model='data.wounded'>
                                     <span>-1 from all attribute rolls when ticked</span>
@@ -180,7 +183,8 @@
                                     data-bs-target="#mapModal">Map</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Blessings</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Possessions</button>
-                                <button class="btn btn-lg mr-2 mb-2 text-white">Codewords</button>
+                                <button class="btn btn-lg mr-2 mb-2 text-white codewords-button" data-bs-toggle="modal"
+                                    data-bs-target="#codewordsModal">Codewords</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Ticks</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Load</button>
                                 <button class="btn btn-lg mr-2 mb-2 text-white">Save</button>
@@ -197,13 +201,48 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-dark" id="mapTitle" style="font-family: Marcellus Reg;"></h5>
+                        <h5 class="modal-title" id="mapTitle"
+                            style="font-family: Marcellus Reg; color: #f55d0e; font-weight: bold; font-size: x-large;">
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="text-center">
-                            <img id="mapImage" src="" style="display: block;" />
+                        <img id="mapImage" src="" style="display: block;" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="codewordsModal" tabindex="-1" role="dialog" aria-labelledby="mapTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="codewordsTitle"
+                            style="font-family: Marcellus Reg; color: #f55d0e; font-weight: bold; font-size: x-large;">
+                            Codewords</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <template v-for="(codebook, bookindex) in codewords">
+                                <template v-for="(codeword, codeindex) in codebook">
+                                    <div class="col-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="codewordBox"
+                                                :checked='hasCodeword(data.codewords, bookindex, codeindex)'
+                                                v-on:click='data.codewords = toggleCodeword(data.codewords, bookindex, codeindex)'
+                                                for="codewordBox" style="height: 22px !important;">
+                                            <label class="form-check-label" for="codewordBox"
+                                                style="font-family: Marcellus Reg; font-size: 22px;">{{codeword}}</label>
+                                        </div>
+                                    </div>
+                                </template>
+                            </template>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -217,10 +256,14 @@
     <script>
         $(document).ready(function () {
             $('.map-button').click(function () {
-                var data = VulcanVerseVueApp.methods.selectMap();
+                var data = app.selectMap();
                 $('#mapTitle').html(data.mapName);
                 $('#mapImage').attr('src', data.map);
                 $('#mapModal').modal('show');
+            });
+
+            $('.codewords-button').click(function () {
+                $('#codewordsModal').modal('show');
             });
         });
     </script>
