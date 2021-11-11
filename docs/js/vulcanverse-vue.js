@@ -8,7 +8,10 @@ const VulcanVerseVueApp = {
             gods: ['', 'Aphrodite', 'Apollo', 'Ares', 'Athena', 'Demeter', 'Hades', 'Hera', 'Hermes', 'Nemesis', 'Orion', 'Poseidon', 'Tethys', 'Vulcan', 'Zeus'],
             companions: ['', 'Chipos', 'Galatea', 'Loutro', 'Polymnia'],
             titles: ['', 'Accursed of Ares', 'Amazonian Queen', 'Champion of the Amazons', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Followed by Bathis', 'Initiate of Tethysian Mysteries', 'Persona Non Grata', 'Pursued by Nemesis', 'Saviour of Iskandria', 'Unfriended by Apollo'],
-            modifiers: [0, 0, 0, 0]
+            modifiers: [0, 0, 0, 0],
+            page: 1,
+            pages: [[], 832, 1706, 0, 0],
+            ticks: ticks
         }
     },
     methods: {
@@ -245,6 +248,47 @@ const VulcanVerseVueApp = {
                     this.data.titles.splice(i, 1);
 
                     e.target.checked = true;
+                }
+            }
+        },
+
+        isTicked: function (book, page, box) {
+
+            var result = false;
+
+            if (ticks[book][page] > 0) {
+
+                if (this.data.ticks !== undefined) {
+
+                    var tick = this.data.ticks.find(e => e.book == book && e.page == page);
+
+                    if (tick === undefined) {
+
+                        this.data.ticks.push({ book: book, page: page, ticks: Array(ticks[book][page]) });
+                    }
+
+                    result = (this.data.ticks.find(e => e.book == book && e.page == page && e.ticks[box] == true)) !== undefined;
+
+                } else {
+
+                    this.data.ticks = [];
+                }
+            }
+
+            return result;
+        },
+
+        toggleTick: function (book, page, box) {
+
+            if (ticks[book][page] > 0) {
+
+                var ticked = this.isTicked(book, page, box);
+
+                var index = this.data.ticks.findIndex(e => e.book == book && e.page == page);
+
+                if (index >= 0 && index < this.data.ticks.length) {
+
+                    this.data.ticks[index].ticks[box] = !ticked;
                 }
             }
         },
