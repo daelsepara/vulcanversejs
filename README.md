@@ -9,13 +9,13 @@ An adventure sheet for the Vulcan Verse gamebooks implemented in Vue.js
 - View/Add/Remove Items from your posessions
 - View/Add/Remove titles
 - Modify companion, attributes, glory, scars, wounded status, money, blessings
+- Display current item enhancing your attribute scores (partial)
 - View Map
 - Load/Save Adventure Sheet into a .json file
 
 # To Do
 
 - Set/Unset Page Ticks
-- Display current item enhancing your attribute scores
 - Add data from other books
 
 # Demo
