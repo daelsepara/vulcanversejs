@@ -83,8 +83,12 @@
                                 <input v-model="data.book" type="number" class="form-control" id="book" placeholder=""
                                     value="{{data.book}}" min=1 max=5 v-on:change="page = 1">
                             </div>
-                            <div class="col-6">
+                            <div class="d-none d-md-block col-6">
                                 <h1 style="font-family: Marcellus Reg; font-size: 32px; color: #f55d0e;"
+                                    v-model.trim="bookTitle()">{{bookTitle()}}</h1>
+                            </div>
+                            <div class="d-md-none col-6">
+                                <h1 style="font-family: Marcellus Reg; font-size: 24px; color: #f55d0e;"
                                     v-model.trim="bookTitle()">{{bookTitle()}}</h1>
                             </div>
                         </div>
@@ -168,27 +172,32 @@
                                     value="{{data.scars}}" min=0>
                             </div>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <span style="font-weight: bold;">WOUND</span>
-                                <div class="form-check">
-                                    <div class="col-1">
-                                        <input class="form-check-input" type="checkbox" role="switch" value=""
-                                            id="wounded" v-model="data.wounded">
-                                    </div>
-                                    <div class="col-11">
-                                        <span>-1 from all attribute rolls when ticked</span>
-                                    </div>
+                        <div class="row">
+                            <div class="col-3"><span class="float-right">WOUND</span></div>
+                            <div class="col-3">
+                                <div class="col-1">
+                                    <input class="form-check-input" type="checkbox" role="switch" value="" id="wounded"
+                                        v-model="data.wounded">
                                 </div>
                             </div>
+                            <div class="col-3"><label for="money" class="form-label text-dark"
+                                    style="font-weight: bold;">MONEY</label></div>
+                            <div class="d-none d-md-block col-3"><label for="location" class="form-label text-dark"
+                                    style="font-weight: bold;">CURRENT
+                                    LOCATION</label></div>
+                            <div class="d-md-none col-3"><label for="location" class="form-label text-dark"
+                                    style="font-weight: bold;">LOCATION</label></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="d-none d-md-block col-md-3 col-lg-3"></div>
+                            <div class="d-md-none col-6">(-1 from all attribute rolls when ticked)</div>
+                            <div class="d-none d-md-block col-md-3 col-lg-3">(-1 from all attribute rolls when ticked)
+                            </div>
                             <div class="col-3">
-                                <label for="money" class="form-label text-dark" style="font-weight: bold;">MONEY</label>
                                 <input v-model="data.money" type="number" class="form-control" id="money"
                                     value="{{data.money}}" min=0>
                             </div>
                             <div class="col-3">
-                                <label for="location" class="form-label text-dark" style="font-weight: bold;">CURRENT
-                                    LOCATION</label>
                                 <input v-model="data.location" type="number" class="form-control" id="location"
                                     value="{{data.location}}" min=1>
                             </div>
@@ -205,7 +214,7 @@
                                 <p class="form-label text-dark" style="font-weight: bold;">MODIFIERS</p>
                             </div>
                             <div class="col-3">
-                                <p class="form-label text-dark" style="font-weight: bold;">BLESSINGS</p>
+                                <span class="form-label text-dark" style="font-weight: bold;">BLESSINGS</span>
                             </div>
                         </div>
                         <div class="row">
