@@ -252,6 +252,18 @@ const VulcanVerseVueApp = {
             }
         },
 
+        getTicks: function (book) {
+
+            if (book !== undefined && book >= 0 && ticks[book] !== undefined) {
+
+                return ticks[book];
+            }
+            else {
+
+                return [];
+            }
+        },
+
         isTicked: function (book, page, box) {
 
             var result = false;
