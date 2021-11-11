@@ -254,6 +254,8 @@ const VulcanVerseVueApp = {
 
         getTicks: function (book) {
 
+            book = Number.parseInt(book);
+
             if (book !== undefined && book >= 0 && ticks[book] !== undefined) {
 
                 return ticks[book];
