@@ -172,6 +172,9 @@
                                 <p class="form-label text-dark" style="font-weight: bold;">SCORE</p>
                             </div>
                             <div class="col-3">
+                                <p class="form-label text-dark" style="font-weight: bold;">MODIFIERS</p>
+                            </div>
+                            <div class="col-3">
                                 <p class="form-label text-dark" style="font-weight: bold;">BLESSINGS</p>
                             </div>
                         </div>
@@ -182,6 +185,10 @@
                             <div class="col-3">
                                 <input v-model="data.attributes.charm" type="number" class="form-control" id="charm"
                                     value="{{data.attributes.charm}}" min=-2 max=5>
+                            </div>
+                            <div class="col-3">
+                                <input v-model="data.modifiers[0]" type="number" class="form-control" id="modifierCharm"
+                                    value="{{data.modifiers[0]}}" min=0 max=5 readonly>
                             </div>
                             <div class="col-3">
                                 <input v-model="data.blessings" type="number" class="form-control" id="charm"
@@ -196,6 +203,10 @@
                                 <input v-model="data.attributes.grace" type="number" class="form-control" id="grace"
                                     value="{{data.attributes.grace}}" min=-2 max=5>
                             </div>
+                            <div class="col-3">
+                                <input v-model="data.modifiers[1]" type="number" class="form-control" id="modifierGrace"
+                                    value="{{data.modifiers[1]}}" min=0 max=5 readonly>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
@@ -205,6 +216,10 @@
                                 <input v-model="data.attributes.ingenuity" type="number" class="form-control"
                                     id="ingenuity" value="{{data.attributes.ingenuity}}" min=-2 max=5>
                             </div>
+                            <div class="col-3">
+                                <input v-model="data.modifiers[2]" type="number" class="form-control"
+                                    id="modifierIngenuity" value="{{data.modifiers[2]}}" min=0 max=5 readonly>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-3">
@@ -212,7 +227,11 @@
                             </div>
                             <div class="col-3">
                                 <input v-model="data.attributes.strength" type="number" class="form-control"
-                                    id="ingenuity" value="{{data.attributes.strength}}" min=-2 max=5>
+                                    id="strength" value="{{data.attributes.strength}}" min=-2 max=5>
+                            </div>
+                            <div class="col-3">
+                                <input v-model="data.modifiers[3]" type="number" class="form-control"
+                                    id="modifierStrength" value="{{data.modifiers[3]}}" min=0 max=5 readonly>
                             </div>
                         </div>
                         <hr style="border-color:#f55d0e; border-width: 2px;" />
@@ -490,9 +509,9 @@
 
             $('.save-item-button').click(function () {
 
-                let charm = parseInt(document.getElementById('itemCharm'));
-                let grace = parseInt(document.getElementById('itemGrace'));
-                let ingenuity = parseInt(document.getElementById('itemIngenuity'));
+                let charm = parseInt(document.getElementById('itemCharm').value);
+                let grace = parseInt(document.getElementById('itemGrace').value);
+                let ingenuity = parseInt(document.getElementById('itemIngenuity').value);
                 let strength = parseInt(document.getElementById('itemStrength').value);
                 let name = document.getElementById('itemName').value.trim();
 

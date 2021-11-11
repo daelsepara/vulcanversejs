@@ -3,7 +3,7 @@ const VulcanVerseVueApp = {
     data() {
         return {
             pageTitle: 'VulcanVerse Adventure Sheet',
-            data: { book: 2, name: '', companion: '', attributes: { charm: -2, grace: -2, ingenuity: -2, strength: -2 }, wounded: false, titles: [], money: 0, god: '', glory: 0, scars: 0, possessions: [], blessings: 0, location: 1, codewords: [], notes: '', ticks: [] },
+            data: { book: 2, name: '', companion: '', attributes: { charm: -2, grace: -2, ingenuity: -2, strength: -2 }, wounded: false, titles: [], money: 0, god: '', glory: 0, scars: 0, possessions: [], blessings: 0, location: 1, codewords: [], notes: '', ticks: [], modifiers: [0, 0, 0, 0] },
             codewords: [[], ['Nadir', 'Namesake', 'Nanny', 'Napalm', 'Nasty', 'Natron', 'Nature', 'Naughty', 'Nautilus', 'Navarine', 'Nefarious', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Nimbus', 'Nirvana', 'Noble', 'Noisome', 'Nomad', 'Noodles', 'Nought', 'Nullify', 'Numb', 'Nurture'], ['Oasis', 'Oblige', 'Ochre', 'Ode', 'Oedipus', 'Offer', 'Ogle', 'Ohone', 'Oil', 'Okra', 'Olifant', 'Omen', 'Onerous', 'Ooze', 'Optics', 'Oquassa', 'Ordeal', 'Ostrich', 'Other', 'Outburst', 'Ovation', 'Owl', 'Oxen', 'Oyster', 'Ozone'], [], [], []],
             gods: ['', 'Aphrodite', 'Apollo', 'Ares', 'Athena', 'Demeter', 'Hades', 'Hera', 'Hermes', 'Nemesis', 'Orion', 'Poseidon', 'Tethys', 'Vulcan', 'Zeus'],
             companions: ['', 'Chipos', 'Galatea', 'Loutro', 'Polymnia'],
@@ -90,6 +90,35 @@ const VulcanVerseVueApp = {
             }
         },
 
+        getModifier(attribute) {
+
+            var values = [];
+
+            if (this.data !== undefined) {
+
+                if (attribute === 0) {
+
+                    values = this.data.possessions.map(function (e) { return e.charm !== undefined ? e.charm : 0 });
+                }
+                else if (attribute === 1) {
+
+                    values = this.data.possessions.map(function (e) { return e.grace !== undefined ? e.grace : 0 });
+                }
+                else if (attribute === 2) {
+
+                    values = this.data.possessions.map(function (e) { return e.ingenuity !== undefined ? e.ingenuity : 0 });
+                }
+                else if (attribute === 3) {
+
+                    values = this.data.possessions.map(function (e) { return e.strength !== undefined ? e.strength : 0 });
+                }
+            }
+
+            var modifier = Math.max.apply(null, values);
+
+            return modifier > 0 ? modifier : 0;
+        },
+
         itemAttributes: function (item) {
 
             var attr = '';
@@ -167,6 +196,11 @@ const VulcanVerseVueApp = {
             if (this.data !== undefined && item !== undefined) {
 
                 this.data.possessions.push(item);
+
+                for (var i = 0; i < 4; i++) {
+
+                    this.data.modifiers[i] = this.getModifier(i);
+                }
             }
         },
 
@@ -179,6 +213,11 @@ const VulcanVerseVueApp = {
                     this.data.possessions.splice(i, 1);
 
                     e.target.checked = true;
+
+                    for (var i = 0; i < 4; i++) {
+
+                        this.data.modifiers[i] = this.getModifier(i);
+                    }
                 }
             }
         },
