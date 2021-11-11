@@ -3,10 +3,11 @@ const VulcanVerseVueApp = {
     data() {
         return {
             pageTitle: 'VulcanVerse Adventure Sheet',
-            data: { book: 2, name: '', companion: '', attributes: { charm: -2, grace: -2, ingenuity: -2, strength: -2 }, wounded: false, titles: [], money: 0, god: '', glory: 0, scars: 0, possessions: [], blessings: [], location: 1, codewords: [], notes: '', ticks: [] },
+            data: { book: 2, name: '', companion: '', attributes: { charm: -2, grace: -2, ingenuity: -2, strength: -2 }, wounded: false, titles: [], money: 0, god: '', glory: 0, scars: 0, possessions: [], blessings: 0, location: 1, codewords: [], notes: '', ticks: [] },
             codewords: [[], ['Nadir', 'Namesake', 'Nanny', 'Napalm', 'Nasty', 'Natron', 'Nature', 'Naughty', 'Nautilus', 'Navarine', 'Nefarious', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Nimbus', 'Nirvana', 'Noble', 'Noisome', 'Nomad', 'Noodles', 'Nought', 'Nullify', 'Numb', 'Nurture'], ['Oasis', 'Oblige', 'Ochre', 'Ode', 'Oedipus', 'Offer', 'Ogle', 'Ohone', 'Oil', 'Okra', 'Olifant', 'Omen', 'Onerous', 'Ooze', 'Optics', 'Oquassa', 'Ordeal', 'Ostrich', 'Other', 'Outburst', 'Ovation', 'Owl', 'Oxen', 'Oyster', 'Ozone'], [], [], []],
-            gods: ['', 'Aphrodite', 'Apollo', 'Ares', 'Athena', 'Demeter', 'Hades', 'Hera', 'Hermes', 'Poseidon', 'Vulcan', 'Zeus'],
-            companions: ['', 'Chipos', 'Galatea', 'Loutro', 'Polymnia']
+            gods: ['', 'Aphrodite', 'Apollo', 'Ares', 'Athena', 'Demeter', 'Hades', 'Hera', 'Hermes', 'Nemesis', 'Orion', 'Poseidon', 'Tethys', 'Vulcan', 'Zeus'],
+            companions: ['', 'Chipos', 'Galatea', 'Loutro', 'Polymnia'],
+            titles: ['', 'Accursed of Ares', 'Amazonian Queen', 'Champion of the Amazons', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Followed by Bathis', 'Initiate of Tethysian Mysteries', 'Persona Non Grata', 'Pursued by Nemesis', 'Saviour of Iskandria', 'Unfriended by Apollo']
         }
     },
     methods: {
@@ -176,6 +177,32 @@ const VulcanVerseVueApp = {
                 if (!e.target.checked) {
 
                     this.data.possessions.splice(i, 1);
+
+                    e.target.checked = true;
+                }
+            }
+        },
+
+        hasTitle: function (i) {
+
+            return this.data !== undefined && this.data.titles[i] !== undefined;
+        },
+
+        addTitle: function (title) {
+
+            if (this.data !== undefined && title !== undefined && title.length > 0) {
+
+                this.data.titles.push(title);
+            }
+        },
+
+        removeTitle: function (i, e) {
+
+            if (this.data !== undefined) {
+
+                if (!e.target.checked) {
+
+                    this.data.titles.splice(i, 1);
 
                     e.target.checked = true;
                 }
