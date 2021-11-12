@@ -101,16 +101,16 @@
                                 <select v-model="page" class="form-select form-select-lg border-vulcan"
                                     aria-label="form-select-lg" id="page"
                                     style="display: block; height: 100%; width: 100%">
-                                    <option v-for="section in pages[data.book]">{{section}}</option>
+                                    <option v-for="section in getPages(data.book)">{{section.page}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="d-none d-md-block col-md-3 col-lg-3">
-                                <p class="float-right">{{getTicks(data.book)[page - 1] > 0 ? "MARKS" : ""}}</p>
+                                <p class="float-right">{{getTicks(data.book, page - 1) > 0 ? "MARKS" : ""}}</p>
                             </div>
                             <div class="col-md-9 col-lg-9 col-sm-12">
-                                <span class='col 1' v-for="tick in getTicks(data.book)[page - 1]">
+                                <span class='col 1' v-for="tick in getTicks(data.book, page - 1)">
                                     <label>&nbsp;</label>
                                     <input class="form-check-input" type="checkbox" role="switch"
                                         :checked="isTicked(data.book, page - 1, tick)"

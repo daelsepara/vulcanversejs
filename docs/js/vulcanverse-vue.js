@@ -252,7 +252,7 @@ const VulcanVerseVueApp = {
             }
         },
 
-        getTicks: function (book) {
+        getPages: function (book) {
 
             book = Number.parseInt(book);
 
@@ -266,11 +266,30 @@ const VulcanVerseVueApp = {
             }
         },
 
+        getTicks: function (book, page) {
+
+            var count = 0;
+
+            if (ticks[book] !== undefined && ticks[book].length > 0) {
+
+                var section = ticks[book].find(e => e.book == book && e.page == page + 1);
+
+                if (section !== undefined) {
+
+                    count = section.ticks;
+                }
+            }
+
+            return count;
+        },
+
         isTicked: function (book, page, box) {
 
             var result = false;
 
-            if (ticks[book][page] > 0) {
+            var count = this.getTicks(book, page);
+
+            if (count > 0) {
 
                 if (this.data.ticks !== undefined) {
 
@@ -278,7 +297,7 @@ const VulcanVerseVueApp = {
 
                     if (tick === undefined) {
 
-                        this.data.ticks.push({ book: book, page: page, ticks: Array(ticks[book][page]) });
+                        this.data.ticks.push({ book: book, page: page, ticks: Array(count) });
                     }
 
                     result = (this.data.ticks.find(e => e.book == book && e.page == page && e.ticks[box] == true)) !== undefined;
@@ -294,7 +313,9 @@ const VulcanVerseVueApp = {
 
         toggleTick: function (book, page, box) {
 
-            if (ticks[book][page] > 0) {
+            var count = this.getTicks(book, page);
+
+            if (count > 0) {
 
                 var ticked = this.isTicked(book, page, box);
 
