@@ -441,11 +441,17 @@ const VulcanVerseVueApp = {
 var app = Vue.createApp(VulcanVerseVueApp).mount('#vulcanverse-vue');
 
 var mapBounds = { x: 0, y: 0 };
+
 var initDraggable = function () {
+    
     var position = { x: 0, y: 0 };
+    
     var getMapBounds = function () {
-        var map = document.querySelector('#mapImage');
+        
+        var map = document.querySelector('#bigMap');
+        
         var containerRects = document.querySelector('.map-container').getClientRects()[0];
+        
         return {
             x: (map.offsetWidth - containerRects.width) * -1,
             y: (map.offsetHeight - containerRects.height) * -1
@@ -454,17 +460,21 @@ var initDraggable = function () {
     interact('.draggable').draggable({
         listeners: {
             move(event) {
+                
                 var nextX = position.x + event.dx;
                 var nextY = position.y + event.dy;
+                
                 if (nextX > 0) nextX = 0;
                 if (nextY > 0) nextY = 0;
 
                 var mapBounds = getMapBounds();
+                
                 if (nextX < mapBounds.x) nextX = mapBounds.x;
                 if (nextY < mapBounds.y) nextY = mapBounds.y;
 
                 position.x = nextX;
                 position.y = nextY;
+ 
                 event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
             },
         }

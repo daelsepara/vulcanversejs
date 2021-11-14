@@ -321,7 +321,12 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <img id="mapImage" src="" />
+                        <div class="d-sm-none">
+                            <img id="smallMap" src="" />
+                        </div>
+                        <div class="d-none d-md-block map-container">
+                            <img id="bigMap" src="" style="display: block;" class="draggable" />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-vulcan btn-lg rounded text-white"
@@ -591,7 +596,8 @@
             $('.map-button').click(function () {
                 var data = app.selectMap();
                 $('#mapTitle').html(data.mapName);
-                $('#mapImage').attr('src', data.map);
+                $('#bigMap').attr('src', data.map);
+                $('#smallMap').attr('src', data.map);
                 $('#mapModal').modal('show');
             });
 
@@ -693,8 +699,6 @@
                 $('#addNoteModal').modal('hide');
                 $('#notesModal').modal('show');
             });
-
-
 
             $('.codewords-button').click(function () {
                 $('#codewordsModal').modal('show');
