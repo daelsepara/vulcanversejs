@@ -57,21 +57,10 @@ const VulcanVerseVueApp = {
 
                     mapData.map = 'images/underworld-of-hades-map.jpg';
                     mapData.mapName = 'The Underworld of Hades';
-
                 } else if (this.data.book == 2) {
 
                     mapData.map = 'images/desert-of-notus-map.jpg';
-                    mapData.mapName = 'Desert of Notus';
-
-                } else if (this.data.book == 3) {
-
-                    mapData.map = 'images/gardens-of-arcadia-map.jpg';
-                    mapData.mapName = 'The Gardens of Arcadia';
-
-                } else if (this.data.book == 4) {
-
-                    mapData.map = 'images/mountains-of-boreas-map.jpg';
-                    mapData.mapName = 'The Mountains of Boreas';
+                    mapData.mapName = 'The Desert of Notus';
 
                 } else if (this.data.book == 5) {
 
@@ -383,3 +372,34 @@ const VulcanVerseVueApp = {
 }
 
 var app = Vue.createApp(VulcanVerseVueApp).mount('#vulcanverse-vue');
+
+var mapBounds = { x: 0, y: 0 };
+var initDraggable = function() {
+    var position = { x: 0, y: 0 };
+    var getMapBounds = function(){
+        var map = document.querySelector('#mapImage');
+        var containerRects = document.querySelector('.map-container').getClientRects()[0];
+        return {
+            x: (map.offsetWidth - containerRects.width) * -1,
+            y: (map.offsetHeight - containerRects.height) * -1
+        };
+    }
+    interact('.draggable').draggable({
+        listeners: {
+            move (event) {
+                var nextX = position.x + event.dx;
+                var nextY = position.y + event.dy;
+                if (nextX > 0) nextX = 0;
+                if (nextY > 0) nextY = 0;
+
+                var mapBounds = getMapBounds();
+                if (nextX < mapBounds.x) nextX = mapBounds.x;
+                if (nextY < mapBounds.y) nextY = mapBounds.y;
+
+                position.x = nextX;
+                position.y = nextY;
+                event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
+            },
+        }
+    })
+}
