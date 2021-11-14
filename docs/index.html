@@ -595,9 +595,9 @@
         $(document).ready(function () {
 
             var $mapModalEl = $('#mapModal');
-            $mapModalEl.on('shown.bs.modal', function () {
-                initDraggable();
-            });
+
+            $mapModalEl.on('shown.bs.modal', function () { initDraggable(); });
+
             $('.map-button').click(function () {
                 var data = app.selectMap();
                 $('#mapTitle').html(data.mapName);
