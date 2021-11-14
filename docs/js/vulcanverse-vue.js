@@ -456,7 +456,8 @@ var initDraggable = function () {
             x: (map.offsetWidth - containerRects.width) * -1,
             y: (map.offsetHeight - containerRects.height) * -1
         };
-    }
+    };
+    var mapBounds = getMapBounds();;
     interact('.draggable').draggable({
         listeners: {
             move(event) {
