@@ -57,12 +57,23 @@ const VulcanVerseVueApp = {
 
                     mapData.map = 'images/underworld-of-hades-map.jpg';
                     mapData.mapName = 'The Underworld of Hades';
-                } else if (this.data.book == 2) {
+                }
+                else if (this.data.book == 2) {
 
                     mapData.map = 'images/desert-of-notus-map.jpg';
                     mapData.mapName = 'The Desert of Notus';
+                }
+                else if (this.data.book == 3) {
 
-                } else if (this.data.book == 5) {
+                    mapData.map = 'images/gardens-of-arcadia-map.jpg';
+                    mapData.mapName = 'Gardens of Arcadia';
+                }
+                else if (this.data.book == 4) {
+
+                    mapData.map = 'images/mountains-of-boreas-map.jpg';
+                    mapData.mapName = 'The Mountains of Boreas';
+                }
+                else if (this.data.book == 5) {
 
                     mapData.map = 'images/vulcan-city-map.jpg';
                     mapData.mapName = 'Vulcan City';
