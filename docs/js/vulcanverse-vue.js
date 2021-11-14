@@ -277,6 +277,27 @@ const VulcanVerseVueApp = {
             }
         },
 
+        removeNote: function (i) {
+
+            if (this.data !== undefined && this.data.notes !== undefined && i >= 0 && i < this.data.notes.length) {
+
+                this.data.notes.splice(i, 1);
+            }
+        },
+
+        addNote: function (note) {
+
+            if (this.data !== undefined && note !== undefined) {
+
+                if (this.data.notes === undefined || this.data.notes.length == 0) {
+
+                    this.data.notes = Array();
+                }
+
+                this.data.notes.push(note);
+            }
+        },
+
         getPages: function (book) {
 
             book = Number.parseInt(book);
@@ -318,7 +339,7 @@ const VulcanVerseVueApp = {
 
             if (count > 0) {
 
-                if (this.data.ticks !== undefined) {
+                if (this.data.ticks !== undefined || this.data.ticks.length == 0) {
 
                     var tick = this.data.ticks.find(e => e.book == book && e.page == page);
 
@@ -389,13 +410,13 @@ const VulcanVerseVueApp = {
                         this.modifiers[i] = this.getModifier(i);
                     }
 
-                    if (this.data.notes === undefined) {
-                        
+                    if (this.data.notes === undefined || this.data.notes.length == 0) {
+
                         this.data.notes = [];
                     }
 
-                    if (this.data.storage === undefined) {
-                        
+                    if (this.data.storage === undefined || this.data.storage.length == 0) {
+
                         this.data.storage = [];
                     }
                 }
@@ -409,9 +430,9 @@ const VulcanVerseVueApp = {
 var app = Vue.createApp(VulcanVerseVueApp).mount('#vulcanverse-vue');
 
 var mapBounds = { x: 0, y: 0 };
-var initDraggable = function() {
+var initDraggable = function () {
     var position = { x: 0, y: 0 };
-    var getMapBounds = function(){
+    var getMapBounds = function () {
         var map = document.querySelector('#mapImage');
         var containerRects = document.querySelector('.map-container').getClientRects()[0];
         return {
@@ -421,7 +442,7 @@ var initDraggable = function() {
     }
     interact('.draggable').draggable({
         listeners: {
-            move (event) {
+            move(event) {
                 var nextX = position.x + event.dx;
                 var nextY = position.y + event.dy;
                 if (nextX > 0) nextX = 0;

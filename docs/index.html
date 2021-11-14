@@ -60,6 +60,15 @@
             font-family: Marcellus Reg !important;
         }
 
+        .alert-vulcan {
+            background-color: #fff3cd;
+            color: #f55d0e;
+            font-weight: normal;
+            font-family: Marcellus Reg !important;
+            font-style: normal;
+            font-size: larger;
+        }
+
         input {
             font-family: Marcellus Reg !important;
             background-color: rgba(0, 0, 0, 0) !important;
@@ -274,10 +283,6 @@
                                 <input v-model="modifiers[3]" type="number" class="form-control" id="modifierStrength"
                                     value="{{modifiers[3]}}" min=0 max=5 readonly>
                             </div>
-                            <div class="col-3">
-                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white notes-button"
-                                    data-bs-toggle="modal" data-bs-target="#notesModal">Notes</button>
-                            </div>
                         </div>
                         <hr style="border-color:#f55d0e; border-width: 2px;" />
                         <div class="row">
@@ -290,6 +295,8 @@
                                     data-bs-toggle="modal" data-bs-target="#itemsModal">Possessions</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white codewords-button"
                                     data-bs-toggle="modal" data-bs-target="#codewordsModal">Codewords</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white notes-button"
+                                    data-bs-toggle="modal" data-bs-target="#notesModal">Notes</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white"
                                     v-on:click="saveFile()">Save</button>
                                 <label for="loadFile" class="btn-vulcan btn-lg mr-2 mb-2 text-white">Load</label>
@@ -509,6 +516,74 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 style="font-family: Marcellus Reg;"><span class="modal-title" id="notesTitle"
+                                style="color: #f55d0e; font-weight: bold; font-size: x-large;">
+                                Notes</span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <template v-for="(note, noteIndex) in data.notes">
+                            <div class="row mb-1">
+                                <div class="col-12">
+                                    <div class="col-12 alert alert-vulcan fade show">
+                                        <button class="btn-close close"
+                                            style="background-color: transparent; border-color: rgba(0, 0, 0, 0); color:#f55d0e"
+                                            aria-hidden="true" v-on:click='removeNote(noteIndex)'>
+                                            <strong>[&times;]</strong>
+                                        </button>
+                                        {{note}}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class=" modal-footer">
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white add-note-button"
+                            :disabled="data.possessions.length >= 20">Add</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog" aria-labelledby="addNoteTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 style="font-family: Marcellus Reg;"><span class="modal-title" id="addNoteTitle"
+                                style="color: #f55d0e; font-weight: bold; font-size: x-large;">
+                                Add Note</span>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Type your notes here" id="note"
+                                        style="resize: none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white save-note-button">Add
+                            Note</button>
+                        <button type="button" class="btn-vulcan btn-lg rounded text-white"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="js/book-data.js"></script>
     <script src="js/vulcanverse-vue.js"></script>
@@ -525,23 +600,6 @@
             $('.items-button').click(function () {
                 $('#itemsModal').modal('show');
                 $('#addItemModal').modal('hide');
-            });
-
-            $('.titles-button').click(function () {
-                document.getElementById('title').value = '';
-                $('#titlesModal').modal('show');
-            });
-
-            $('.add-title-button').click(function () {
-
-                let title = document.getElementById('title').value.trim();
-
-                if (title !== undefined && title.length > 0) {
-
-                    app.addTitle(title);
-
-                    document.getElementById('title').value = '';
-                }
             });
 
             $('.add-item-button').click(function () {
@@ -594,6 +652,51 @@
                 $('#addItemModal').modal('hide');
                 $('#itemsModal').modal('show');
             });
+
+            $('.titles-button').click(function () {
+                document.getElementById('title').value = '';
+                $('#titlesModal').modal('show');
+            });
+
+            $('.add-title-button').click(function () {
+
+                let title = document.getElementById('title').value.trim();
+
+                if (title !== undefined && title.length > 0) {
+
+                    app.addTitle(title);
+
+                    document.getElementById('title').value = '';
+                }
+            });
+
+            $('.notes-button').click(function () {
+                $('#notesModal').modal('show');
+                $('#addNoteModal').modal('hide');
+            });
+
+            $('.add-note-button').click(function () {
+
+                document.getElementById('note').value = '';
+
+                $('#notesModal').modal('hide');
+                $('#addNoteModal').modal('show');
+            });
+
+            $('.save-note-button').click(function () {
+
+                let note = document.getElementById('note').value.trim();
+
+                if (note !== undefined && note.length > 0) {
+
+                    app.addNote(note);
+                }
+
+                $('#addNoteModal').modal('hide');
+                $('#notesModal').modal('show');
+            });
+
+
 
             $('.codewords-button').click(function () {
                 $('#codewordsModal').modal('show');
