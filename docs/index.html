@@ -272,14 +272,20 @@
                                 <input v-model="modifiers[3]" type="number" class="form-control" id="modifierStrength"
                                     value="{{modifiers[3]}}" min=0 max=5 readonly>
                             </div>
+                            <div class="col-3">
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white notes-button"
+                                    data-bs-toggle="modal" data-bs-target="#notesModal">Notes</button>
+                            </div>
                         </div>
                         <hr style="border-color:#f55d0e; border-width: 2px;" />
                         <div class="row">
                             <div class="col-12">
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white map-button" data-bs-toggle="modal"
                                     data-bs-target="#mapModal">Map</button>
-                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white titles-button">Titles</button>
-                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white items-button">Possessions</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white titles-button"
+                                    data-bs-toggle="modal" data-bs-target="#titlesModal">Titles</button>
+                                <button class="btn-vulcan btn-lg mr-2 mb-2 text-white items-button"
+                                    data-bs-toggle="modal" data-bs-target="#itemsModal">Possessions</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white codewords-button"
                                     data-bs-toggle="modal" data-bs-target="#codewordsModal">Codewords</button>
                                 <button class="btn-vulcan btn-lg mr-2 mb-2 text-white"

@@ -3,11 +3,11 @@ const VulcanVerseVueApp = {
     data() {
         return {
             pageTitle: 'VulcanVerse Adventure Sheet',
-            data: { book: 2, name: '', companion: '', attributes: { charm: -2, grace: -2, ingenuity: -2, strength: -2 }, wounded: false, titles: [], money: 0, god: '', glory: 0, scars: 0, possessions: [], blessings: 0, location: 1, codewords: [], notes: '', ticks: [] },
-            codewords: [[], ['Nadir', 'Namesake', 'Nanny', 'Napalm', 'Nasty', 'Natron', 'Nature', 'Naughty', 'Nautilus', 'Navarine', 'Nefarious', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Nimbus', 'Nirvana', 'Noble', 'Noisome', 'Nomad', 'Noodles', 'Nought', 'Nullify', 'Numb', 'Nurture'], ['Oasis', 'Oblige', 'Ochre', 'Ode', 'Oedipus', 'Offer', 'Ogle', 'Ohone', 'Oil', 'Okra', 'Olifant', 'Omen', 'Onerous', 'Ooze', 'Optics', 'Oquassa', 'Ordeal', 'Ostrich', 'Other', 'Outburst', 'Ovation', 'Owl', 'Oxen', 'Oyster', 'Ozone'], [], [], []],
+            data: { book: 2, name: '', companion: '', attributes: { charm: -2, grace: -2, ingenuity: -2, strength: -2 }, wounded: false, titles: [], money: 0, god: '', glory: 0, scars: 0, possessions: [], blessings: 0, location: 1, codewords: [], notes: '', ticks: [], notes: [], storage: [] },
+            codewords: [[], ['Nadir', 'Namesake', 'Nanny', 'Napalm', 'Nasty', 'Natron', 'Nature', 'Naughty', 'Nautilus', 'Navarine', 'Nefarious', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'Nimbus', 'Nirvana', 'Noble', 'Noisome', 'Nomad', 'Noodles', 'Nought', 'Nullify', 'Numb', 'Nurture'], ['Oasis', 'Oblige', 'Ochre', 'Ode', 'Oedipus', 'Offer', 'Ogle', 'Ohone', 'Oil', 'Okra', 'Olifant', 'Omen', 'Onerous', 'Ooze', 'Optics', 'Oquassa', 'Ordeal', 'Ostrich', 'Other', 'Outburst', 'Ovation', 'Owl', 'Oxen', 'Oyster', 'Ozone'], ['Painter', 'Panacea', 'Parapet', 'Parentage', 'Parted', 'Passage', 'Passion', 'PatchupOne', 'PatchupTwo', 'PatchupThree', 'PatchupFour', 'PatchupFive', 'PatchupSix', 'PatchupSeven', 'Payment', 'Pelt', 'Penalty', 'Penance', 'Pennywort', 'Penumbra', 'Perdition', 'Pernicious', 'Petasos', 'Pheon', 'Phosphoric', 'Pinot', 'Plantation', 'Planted', 'Pledged', 'Plenty', 'Plight', 'Plough', 'Plundered', 'Poll', 'Praise-Apollo', 'Praise-Ares', 'Praise-Artemis', 'Praise-Athena', 'Prankette', 'Precious', 'Press', 'Priestly', 'Prisoner', 'Projectile', 'Propeller', 'Proprietor', 'Proscribe', 'Prosthetic', 'Provenance', 'Pudding', 'Pumped', 'Punisher', 'Punition', 'Pure', 'Purged', 'Purify', 'Purloin', 'Pursued'], ['Quad', 'Quaestor', 'Quaff', 'Quagmire', 'Quail', 'Quake', 'Quality', 'Quark', 'Quarter', 'Queen', 'Quench', 'Query', 'Quest', 'Queue', 'Quibble', 'Quiddity', 'Quill', 'Quince', 'Quire', 'Quiver', 'Quoit', 'Quondam', 'Quorum', 'Quota'], []],
             gods: ['', 'Aphrodite', 'Apollo', 'Ares', 'Athena', 'Demeter', 'Hades', 'Hera', 'Hermes', 'Nemesis', 'Orion', 'Poseidon', 'Tethys', 'Vulcan', 'Zeus'],
             companions: ['', 'Chipos', 'Galatea', 'Loutro', 'Polymnia'],
-            titles: ['', 'Accursed of Ares', 'Amazonian Queen', 'Champion of the Amazons', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Followed by Bathis', 'Initiate of Tethysian Mysteries', 'Persona Non Grata', 'Pursued by Nemesis', 'Saviour of Iskandria', 'Unfriended by Apollo'],
+            titles: ['', 'Accursed of Ares', 'Amazonian Queen', 'Archon of Agriculture', 'Archon of Wines', 'Champion of the Amazons', 'Dryad\'s Doom', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Followed by Bathis', 'Friend of the Forest', 'Giant Slayer', 'Hero without a Shadow', 'Initiate of Tethysian Mysteries', 'Kissed by a Golden Princess', 'Kissed by a Water Nymph', 'Lion slayer', 'Master of Mockery', 'Mayor of Bridgadoom', 'Mindless Quarry Slave', 'Persona Non Grata', 'Pursued by Nemesis', 'Saved by a Water Nymph', 'Saviour of Iskandria', 'Slayer of Truffle Farmers', 'Steward of the Summer Palace', 'The Apiarist', 'The Embezzler', 'The Hotelier', 'Tricked by a Water Nymph', 'Unfriended by Apollo', 'Wolf-runner'],
             modifiers: [0, 0, 0, 0],
             page: 1,
             pages: [[], 832, 1706, 0, 0],
@@ -138,6 +138,8 @@ const VulcanVerseVueApp = {
 
             var attr = '';
 
+            var count = 0;
+
             if (item.charm !== undefined) {
 
                 if (item.charm < 0) {
@@ -150,9 +152,16 @@ const VulcanVerseVueApp = {
                 }
 
                 attr += item.charm + ' CHARM';
+
+                count++;
             }
 
             if (item.grace !== undefined) {
+
+                if (count > 0) {
+
+                    attr += ', ';
+                }
 
                 if (item.grace < 0) {
 
@@ -164,9 +173,16 @@ const VulcanVerseVueApp = {
                 }
 
                 attr += item.grace + ' GRACE';
+
+                count++;
             }
 
             if (item.ingenuity !== undefined) {
+
+                if (count > 0) {
+
+                    attr += ', ';
+                }
 
                 if (item.ingenuity < 0) {
 
@@ -178,9 +194,16 @@ const VulcanVerseVueApp = {
                 }
 
                 attr += item.ingenuity + ' INGENUITY';
+
+                count++;
             }
 
             if (item.strength !== undefined) {
+
+                if (count > 0) {
+
+                    attr += ', ';
+                }
 
                 if (item.strength < 0) {
 
@@ -191,6 +214,8 @@ const VulcanVerseVueApp = {
                 }
 
                 attr += item.strength + ' STRENGTH';
+
+                count++;
             }
 
             if (attr.length > 0) {
@@ -373,6 +398,16 @@ const VulcanVerseVueApp = {
                     for (var i = 0; i < 4; i++) {
 
                         this.modifiers[i] = this.getModifier(i);
+                    }
+
+                    if (this.data.notes === undefined) {
+                        
+                        this.data.notes = [];
+                    }
+
+                    if (this.data.storage === undefined) {
+                        
+                        this.data.storage = [];
                     }
                 }
             };
