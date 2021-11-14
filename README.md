@@ -6,13 +6,13 @@ An adventure sheet for the Vulcan Verse gamebooks implemented in Vue.js
 
 - Select god, codewords from a list
 - Set Current Location
-- View/Add/Remove Items from your posessions
-- View/Add/Remove titles
+- View/Add/Remove items from your posessions
+- View/Add/Remove titles, notes
 - Modify companion, attributes, glory, scars, wounded status, money, blessings
-- Display current item enhancing your attribute scores (partial: only modifier is displayed)
-- View Map
+- Display current item enhancing your attribute scores (**PARTIAL**: Only modifier is displayed)
 - Set/Unset page tick marks
 - Load/Save Adventure Sheet into a .json file
+- View Map
 
 # To Do
 
