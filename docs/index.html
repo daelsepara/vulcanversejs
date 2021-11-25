@@ -349,8 +349,8 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <template v-for="(codebook, bookindex) in codewords">
+                        <template v-for="(codebook, bookindex) in codewords">
+                            <div v-if="codebook.length > 0" class="row mb-3">
                                 <template v-for="(codeword, codeindex) in codebook">
                                     <div class="col-4">
                                         <div class="form-check">
@@ -363,8 +363,8 @@
                                         </div>
                                     </div>
                                 </template>
-                            </template>
-                        </div>
+                            </div>
+                        </template>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-vulcan btn-lg rounded text-white"
