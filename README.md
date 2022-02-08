@@ -14,10 +14,6 @@ An adventure sheet for the Vulcan Verse gamebooks implemented in Vue.js
 - Load/Save Adventure Sheet into a .json file
 - View Map
 
-# To Do
-
-- Add data from other books
-
 # Demo
 
 Checkout the live demo at [https://daelsepara.github.io/vulcanversejs](https://daelsepara.github.io/vulcanversejs).
