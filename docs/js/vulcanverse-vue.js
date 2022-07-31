@@ -10,7 +10,7 @@ const VulcanVerseVueApp = {
             titles: ['', 'Accursed of Ares', 'Amazonian Queen', 'Archon of Agriculture', 'Archon of Wines', 'Champion of the Amazons', 'Dryad\'s Doom', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Followed by Bathis', 'Friend of the Forest', 'Giant Slayer', 'Hero without a Shadow', 'Initiate of Tethysian Mysteries', 'Kissed by a Golden Princess', 'Kissed by a Water Nymph', 'Lion slayer', 'Master of Mockery', 'Mayor of Bridgadoom', 'Mindless Quarry Slave', 'Persona Non Grata', 'Pursued by Nemesis', 'Saved by a Water Nymph', 'Saviour of Iskandria', 'Slayer of Truffle Farmers', 'Steward of the Summer Palace', 'The Apiarist', 'The Embezzler', 'The Hotelier', 'Tricked by a Water Nymph', 'Unfriended by Apollo', 'Wolf-runner'],
             modifiers: [0, 0, 0, 0],
             page: 1,
-            pages: [[], 832, 1706, 0, 0],
+            pages: [[], 832, 1706, 834, 1076],
             ticks: ticks,
             position: { x: 0, y: 0 }
         }
