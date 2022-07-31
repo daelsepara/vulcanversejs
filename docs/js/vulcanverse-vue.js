@@ -316,6 +316,20 @@ const VulcanVerseVueApp = {
 
             if (book !== undefined && book >= 0 && ticks[book] !== undefined) {
 
+                return this.pages[book];
+            }
+            else {
+
+                return 1;
+            }
+        },
+
+        getPagesWithTicks: function (book) {
+
+            book = Number.parseInt(book);
+
+            if (book !== undefined && book >= 0 && ticks[book] !== undefined) {
+
                 return ticks[book];
             }
             else {
