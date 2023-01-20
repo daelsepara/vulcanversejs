@@ -26,5 +26,5 @@ Feel free to report any bugs, issues, and/or suggestions. Thanks!
 
 Many thanks to the following contributors
 
-- [Kurufinwe21](https://github.com/Kurufinwe21) for testing and finding numerous bugs
-- [azamanaza](https://github.com/azamanaza) who I consult for JavaScript stuff
+- [Kurufinwe21](https://github.com/Kurufinwe21): Testing and finding numerous bugs
+- [azamanaza](https://github.com/azamanaza): Help in Vue and general JavaScript stuff
