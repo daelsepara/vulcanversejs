@@ -21,3 +21,10 @@ Checkout the live demo at [https://daelsepara.github.io/vulcanversejs](https://d
 # Bugs
 
 Feel free to report any bugs, issues, and/or suggestions. Thanks!
+
+# Acknowledgements
+
+Many thanks to the following contributors
+
+- [Kurufinwe21](https://github.com/Kurufinwe21) for testing and finding numerous bugs
+- [azamanaza](https://github.com/azamanaza) who I consult for JavaScript stuff
