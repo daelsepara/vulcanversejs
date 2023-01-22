@@ -354,12 +354,15 @@
                                 <template v-for="(codeword, codeindex) in codebook">
                                     <div class="col-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="codewordBox"
+                                            <input class="form-check-input" type="checkbox"
+											    :id="codeword-{bookindex}-{codeindex}"
                                                 :checked="hasCodeword(bookindex, codeindex)"
-                                                v-on:click="toggleCodeword(bookindex, codeindex)" for="codewordBox"
+                                                v-on:click="toggleCodeword(bookindex, codeindex)"
                                                 style="height: 18px !important;">
-                                            <label class="form-check-label" for="codewordBox"
-                                                style="font-family: Marcellus Reg; font-size: 18px;">{{codeword}}</label>
+                                            <label class="form-check-label"
+											    :id="label-codeword-{bookindex}-{codeindex}"
+												v-on:click="toggleCodeword(bookindex, codeindex)"
+											    style="font-family: Marcellus Reg; font-size: 18px;">{{codeword}}</label>
                                         </div>
                                     </div>
                                 </template>
@@ -390,10 +393,13 @@
                             <template v-for="(title, titleindex) in data.titles">
                                 <div class="col-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="titleBox"
-                                            v-on:click="removeTitle(titleindex, $event)" for="titleBox"
+                                        <input class="form-check-input"
+										    type="checkbox"
+										    :id="title-{titleindex}"
+                                            v-on:click="removeTitle(titleindex, $event)"
                                             style="height: 18px !important;" :checked="hasTitle(titleindex)">
-                                        <label class="form-check-label" for="titleBox"
+                                        <label class="form-check-label"
+										    :id="label-title-{titleindex}"
                                             style="font-family: Marcellus Reg; font-size: 18px;"><b>{{title}}</b></label>
                                     </div>
                                 </div>
@@ -401,9 +407,7 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label for="title" class="form-label text-dark" style="font-weight: bold;">Select a
-                                    title
-                                    to add</label>
+                                <label for="title" class="form-label text-dark" style="font-weight: bold;">Select a title to add</label>
                                 <select class="form-select form-select-lg border-vulcan" aria-label="form-select-lg"
                                     id="title" style="display: block; width: 100%">
                                     <option v-for="title in titles">{{title}}</option>
@@ -438,12 +442,13 @@
                             <template v-for="(item, itemindex) in data.possessions">
                                 <div class="col-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="itemBox"
-                                            v-on:click="removeItem(itemindex, $event)" for="itemBox"
+                                        <input class="form-check-input" type="checkbox"
+										    :id="item-{itemindex}"
+                                            v-on:click="removeItem(itemindex, $event)"
                                             style="height: 18px !important;" :checked="hasItem(itemindex)">
-                                        <label class="form-check-label" for="itemBox"
-                                            style="font-family: Marcellus Reg; font-size: 18px;"><b>{{item.name}}</b>
-                                            {{itemAttributes(item)}}</label>
+                                        <label class="form-check-label" style="font-family: Marcellus Reg; font-size: 18px;">
+											<b>{{item.name}}</b>{{itemAttributes(item)}}
+										</label>
                                     </div>
                                 </div>
                             </template>
@@ -539,6 +544,7 @@
                                 <div class="col-12">
                                     <div class="col-12 alert alert-vulcan fade show">
                                         <button class="btn-close close"
+										    :id='notes-{noteIndex}'
                                             style="background-color: transparent; border-color: rgba(0, 0, 0, 0); color:#f55d0e"
                                             aria-hidden="true" v-on:click='removeNote(noteIndex)'>
                                             <strong><i class="bi bi-trash"></i></strong>
