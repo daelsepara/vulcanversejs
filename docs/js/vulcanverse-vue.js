@@ -10,7 +10,7 @@ const VulcanVerseVueApp = {
             titles: ['', 'Accursed of Ares', 'Amazonian Queen', 'Arcadian Art Dealer', 'Archon of Agriculture', 'Archon of Wines', 'Champion of the Amazons', 'Dryad\'s Doom', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Favoured of Demeter', 'Followed by Bathis', 'Friend of the Ferryman', 'Friend of the Forest', 'Giant Slayer', 'Grief Stricken', 'Hero without a Shadow', 'Initiate of Tethysian Mysteries', 'Kissed by a Golden Princess', 'Kissed by a Water Nymph', 'Kraken Friend', 'Lion slayer', 'Master of Mockery', 'Mayor of Bridgadoom', 'Mindless Quarry Slave', 'Persona Non Grata', 'Pursued by Nemesis', 'Queen\'s Champion', 'Saved by a Water Nymph', 'Saviour of Iskandria', 'Sisyphean Taskmaster', 'Slayer of Truffle Farmers', 'Spider\'s Bane', 'Steward of the Summer Palace', 'The Apiarist', 'The Embezzler', 'The Hotelier', 'The Liberator', 'Tricked by a Water Nymph', 'The Gardener', 'Unfriended by Apollo', 'Wolf-runner'],
             modifiers: [0, 0, 0, 0],
             page: 1,
-            pages: [[], 832, 1706, 834, 1076, 1667],
+            pages: pages,
             ticks: ticks,
             position: { x: 0, y: 0 }
         }
@@ -314,9 +314,9 @@ const VulcanVerseVueApp = {
 
             book = Number.parseInt(book);
 
-            if (book !== undefined && book >= 0 && ticks[book] !== undefined) {
+            if (book !== undefined && book >= 0 && pages[book] !== undefined) {
 
-                return this.pages[book];
+                return pages[book];
             }
             else {
 
