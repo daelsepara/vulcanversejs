@@ -471,8 +471,6 @@ var initDraggable = function () {
         };
     };
 
-    var mapBounds = getMapBounds();
-
     interact('.draggable').draggable({
 
         listeners: {
