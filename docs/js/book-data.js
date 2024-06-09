@@ -13,3 +13,23 @@ var ticks5 = [{ book: 5, page: 17, ticks: 2 }, { book: 5, page: 48, ticks: 1 }, 
 var ticks = [ticks0, ticks1, ticks2, ticks3, ticks4, ticks5];
 
 var pages = [0, 832, 1706, 834, 1076, 1667];
+
+var codewords0 = [];
+
+var codewords1 = ['Nadir', 'Namesake', 'Nanny', 'Napalm', 'Nasty', 'Natron', 'Nature', 'Naughty', 'Nautilus', 'Navarine', 'Nefarious', 'Negate', 'Nemesis', 'Neophyte', 'Nephew', 'Nervous', 'Nest', 'Nettle', 'Neural', 'Neutralised', 'Neveragain', 'Neverending', 'New-Apollo', 'New-Ares', 'New-Artemis', 'New-Athena', 'Newhouse', 'Nibble', 'Nicked', 'Nifty', 'Niggle', 'Night', 'Nihilism', 'Nimbus', 'Nirvana', 'Noble', 'Noisome', 'Nomad', 'Noodles', 'Nought', 'Nullify', 'Numb', 'Nurture'];
+
+var codewords2 = ['Oasis', 'Oblige', 'Ochre', 'Ode', 'Oedipus', 'Offer', 'Ogle', 'Ohone', 'Oil', 'Okra', 'Olifant', 'Omen', 'Onerous', 'Ooze', 'Optics', 'Oquassa', 'Ordeal', 'Ostrich', 'Other', 'Outburst', 'Ovation', 'Owl', 'Oxen', 'Oyster', 'Ozone'];
+
+var codewords3 = ['Painter', 'Panacea', 'Parapet', 'Parentage', 'Parted', 'Passage', 'Passion', 'PatchupOne', 'PatchupTwo', 'PatchupThree', 'PatchupFour', 'PatchupFive', 'PatchupSix', 'PatchupSeven', 'Payment', 'Pelt', 'Penalty', 'Penance', 'Pennywort', 'Penumbra', 'Perdition', 'Pernicious', 'Petasos', 'Pheon', 'Phosphoric', 'Pinot', 'Plantation', 'Planted', 'Pledged', 'Plenty', 'Plight', 'Plough', 'Plundered', 'Poll', 'Praise-Apollo', 'Praise-Ares', 'Praise-Artemis', 'Praise-Athena', 'Prankette', 'Precious', 'Press', 'Priestly', 'Prisoner', 'Projectile', 'Propeller', 'Proprietor', 'Proscribe', 'Prosthetic', 'Provenance', 'Pudding', 'Pumped', 'Punisher', 'Punition', 'Pure', 'Purged', 'Purify', 'Purloin', 'Pursued'];
+
+var codewords4 = ['Quad', 'Quaestor', 'Quaff', 'Quagmire', 'Quail', 'Quake', 'Quality', 'Quark', 'Quarter', 'Queen', 'Quell', 'Quench', 'Query', 'Quest', 'Queue', 'Quibble', 'Quiddity', 'Quill', 'Quince', 'Quire', 'Quiver', 'Quoit', 'Quondam', 'Quorum', 'Quota'];
+
+var codewords5 = ['Rabbit', 'Radiant', 'Radish', 'Rafter', 'Rage', 'Rain', 'Ramrod', 'Raptor', 'Ratchet', 'Razor', 'Rebuke', 'Recite', 'Rectangle', 'Recursive', 'Reef', 'Reflection', 'Regal', 'Remedy', 'Rendezvous', 'Requiem', 'Restore', 'Retrieve', 'Reverie', 'Rhombus', 'Rhyme', 'Rice', 'Ridge', 'Rifle', 'Rigor', 'Rink', 'Ripple', 'Ritual', 'Riven', 'Roar', 'Robber', 'Rock', 'Rogue', 'Rohan', 'Romance', 'Root', 'Rose', 'Royal', 'Ruby', 'Rudiment', 'Ruffle', 'Rug', 'Rumour', 'Rune', 'Rustic', 'Rye'];
+
+var codewords = [codewords0, codewords1, codewords2, codewords3, codewords4, codewords5];
+
+var titles = ['', 'Accursed of Ares', 'Amazonian Queen', 'Arcadian Art Dealer', 'Archon of Agriculture', 'Archon of Wines', 'Champion of the Amazons', 'Dryad\'s Doom', 'Earth Mother\'s Herald', 'Favoured by Orion', 'Favoured of Demeter', 'Followed by Bathis', 'Friend of the Ferryman', 'Friend of the Forest', 'Giant Slayer', 'Grief Stricken', 'Hero without a Shadow', 'Initiate of Tethysian Mysteries', 'Kissed by a Golden Princess', 'Kissed by a Water Nymph', 'Kraken Friend', 'Lion slayer', 'Master of Mockery', 'Mayor of Bridgadoom', 'Mindless Quarry Slave', 'Persona Non Grata', 'Pursued by Nemesis', 'Queen\'s Champion', 'Saved by a Water Nymph', 'Saviour of Iskandria', 'Sisyphean Taskmaster', 'Slayer of Truffle Farmers', 'Spider\'s Bane', 'Steward of the Summer Palace', 'The Apiarist', 'The Embezzler', 'The Hotelier', 'The Liberator', 'Tricked by a Water Nymph', 'The Gardener', 'Unfriended by Apollo', 'Wolf-runner'];
+
+var gods = ['', 'Aphrodite', 'Apollo', 'Ares', 'Artemis', 'Athena', 'Demeter', 'Hades', 'Hera', 'Hermes', 'Nemesis', 'Orion', 'Poseidon', 'Tethys', 'Vulcan', 'Zeus'];
+
+var companions = ['', 'Chipos', 'Galatea', 'Loutro', 'Magnes', 'Polymnia', 'Tomyios'];
